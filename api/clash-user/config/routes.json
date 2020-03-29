@@ -1,0 +1,59 @@
+{
+  "routes": [{
+      "method": "GET",
+      "path": "/clash-users",
+      "handler": "clash-user.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/clash-users/count",
+      "handler": "clash-user.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/clash-users/profile",
+      "handler": "clash-user.profile",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/clash-users/:name",
+      "handler": "clash-user.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/clash-users",
+      "handler": "clash-user.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/clash-users/:id",
+      "handler": "clash-user.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/clash-users/:id",
+      "handler": "clash-user.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "kind": "collectionType",
+  "connection": "default",
+  "collectionName": "clash_users",
+  "info": {
+    "name": "ClashUser"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": false,
+      "unique": true
+    },
+    "profiles": {
+      "type": "component",
+      "repeatable": true,
+      "component": "array.clash-user-rule"
+    }
+  }
+}

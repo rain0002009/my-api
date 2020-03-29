@@ -1,0 +1,21 @@
+{
+  "connection": "default",
+  "collectionName": "components_array_clash_user_rules",
+  "info": {
+    "name": "clash-user-rule",
+    "icon": "border-all"
+  },
+  "options": {},
+  "attributes": {
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "file",
+        "link"
+      ]
+    },
+    "content": {
+      "type": "richtext"
+    }
+  }
+}
