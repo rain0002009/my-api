@@ -79,9 +79,9 @@ async function createProfile(list) {
   }
   let file = ''
   let newProfile = {
-    Proxy: [],
-    'Proxy Group': [],
-    Rule: []
+    proxies: [],
+    'proxy-groups': [],
+    rules: []
   }
 
   const profileList = await Promise.all(list.map(item => {
@@ -98,17 +98,18 @@ async function createProfile(list) {
     return Promise.resolve('')
   }))
 
-  const newProfileProxyGroup = newProfile['Proxy Group']
-  Object.assign(newProfile, ...profileList.map(item => omit(item, ['Proxy', 'Proxy Group', 'Rule'])))
-  const rules = changeRuleToMap(newProfile.Rule)
+  const newProfileProxyGroup = newProfile['proxy-groups']
+  Object.assign(newProfile, ...profileList.map(item => omit(item, ['Proxy', 'Proxy Group', 'Rule', 'proxies', 'proxy-groups', 'rules'])))
+  const rules = changeRuleToMap(newProfile.rules)
   profileList.forEach((profile, index) => {
-    newProfile.Proxy = newProfile.Proxy.concat(profile.Proxy || [])
-    mixinProxyGroup(newProfileProxyGroup, profile['Proxy Group'] || [])
-    Array.isArray(profile.Rule) && profile.Rule.forEach(item => rules.set(getRuleKey(item), item))
+    const profileRules = profile.Proxy || profile.rules || []
+    newProfile.rules = newProfile.rules.concat(profileRules)
+    mixinProxyGroup(newProfileProxyGroup, profile['Proxy Group'] || profile['proxy-groups'] || [])
+    Array.isArray(profileRules) && profileRules.forEach(item => rules.set(getRuleKey(item), item))
   })
 
   // 对规则排序确保MATCH在最后
-  newProfile.Rule = [...rules.values()].sort((a, b) => {
+  newProfile.rules = [...rules.values()].sort((a, b) => {
     const ruleTypes = ['DOMAIN-SUFFIX', 'DOMAIN', 'DOMAIN-KEYWORD', 'IP-CIDR', 'SRC-IP-CIDR', 'GEOIP', 'DST-PORT', 'SRC-PORT', 'MATCH']
     const getRuleTypeIndex = (key) => ruleTypes.indexOf(key.slice(0, key.indexOf(',')))
     return getRuleTypeIndex(a) - getRuleTypeIndex(b)
