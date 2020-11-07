@@ -16,9 +16,6 @@ axiosInstance.interceptors.response.use(function (response) {
 }, function (error) {
   return Promise.reject(error)
 })
-const {
-  sanitizeEntity
-} = require('strapi-utils')
 
 function createNewUserKey(data) {
   let encrypted = ''
@@ -60,7 +57,7 @@ function mixinProxyGroup(targetGroup, sourceGroup) {
 }
 
 function getRuleKey(rule) {
-  return (rule.match(/[\w\-,\./]+(?=,\w+)/g) || [])[0]
+  return (rule.match(/[\w\-,\\./]+(?=,\w+)/g) || [])[0]
 }
 
 function changeRuleToMap(source) {
@@ -77,7 +74,7 @@ async function createProfile(list) {
   if (!Array.isArray(list) || list.length === 0) {
     throw new Error('list 为空')
   }
-  let file = ''
+  let file
   let newProfile = {
     proxies: [],
     'proxy-groups': [],
@@ -101,9 +98,9 @@ async function createProfile(list) {
   const newProfileProxyGroup = newProfile['proxy-groups']
   Object.assign(newProfile, ...profileList.map(item => omit(item, ['Proxy', 'Proxy Group', 'Rule', 'proxies', 'proxy-groups', 'rules'])))
   const rules = changeRuleToMap(newProfile.rules)
-  profileList.forEach((profile, index) => {
+  profileList.forEach((profile) => {
     const profileRules = profile.Rule || profile.rules || []
-    newProfile.rules = newProfile.rules.concat(profileRules)
+    newProfile.proxies = newProfile.proxies.concat(profile.Proxy || profile.proxies || [])
     mixinProxyGroup(newProfileProxyGroup, profile['Proxy Group'] || profile['proxy-groups'] || [])
     Array.isArray(profileRules) && profileRules.forEach(item => rules.set(getRuleKey(item), item))
   })
