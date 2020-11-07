@@ -17,21 +17,21 @@
     "lodash": "^4.17.15",
     "mysql": "^2.18.1",
     "sqlite3": "latest",
-    "strapi": "3.0.0-beta.19.3",
-    "strapi-admin": "3.0.0-beta.19.3",
-    "strapi-connector-bookshelf": "3.0.0-beta.19.3",
-    "strapi-plugin-content-manager": "3.0.0-beta.19.3",
-    "strapi-plugin-content-type-builder": "3.0.0-beta.19.3",
-    "strapi-plugin-email": "3.0.0-beta.19.3",
-    "strapi-plugin-upload": "3.0.0-beta.19.3",
-    "strapi-plugin-users-permissions": "3.0.0-beta.19.3",
-    "strapi-utils": "3.0.0-beta.19.3"
+    "strapi": "^3.2.5",
+    "strapi-admin": "^3.2.5",
+    "strapi-connector-bookshelf": "^3.2.5",
+    "strapi-plugin-content-manager": "^3.2.5",
+    "strapi-plugin-content-type-builder": "^3.2.5",
+    "strapi-plugin-email": "^3.2.5",
+    "strapi-plugin-upload": "^3.2.5",
+    "strapi-plugin-users-permissions": "^3.2.5",
+    "strapi-utils": "^3.2.5"
   },
   "author": {
     "name": "A Strapi developer"
   },
   "strapi": {
-    "uuid": "3fb139d8-51bb-40ed-91e3-2202185495c2"
+    "uuid": "f4d055fd-647b-4a3b-82df-d1e08dbbaf81"
   },
   "engines": {
     "node": ">=10.0.0",
