@@ -102,7 +102,7 @@ async function createProfile(list) {
   Object.assign(newProfile, ...profileList.map(item => omit(item, ['Proxy', 'Proxy Group', 'Rule', 'proxies', 'proxy-groups', 'rules'])))
   const rules = changeRuleToMap(newProfile.rules)
   profileList.forEach((profile, index) => {
-    const profileRules = profile.Proxy || profile.rules || []
+    const profileRules = profile.Rule || profile.rules || []
     newProfile.rules = newProfile.rules.concat(profileRules)
     mixinProxyGroup(newProfileProxyGroup, profile['Proxy Group'] || profile['proxy-groups'] || [])
     Array.isArray(profileRules) && profileRules.forEach(item => rules.set(getRuleKey(item), item))
