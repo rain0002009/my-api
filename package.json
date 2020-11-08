@@ -16,6 +16,8 @@
     "knex": "<0.20.0",
     "lodash": "^4.17.15",
     "mysql": "^2.18.1",
+    "pg": "^8.4.2",
+    "pg-connection-string": "^2.4.0",
     "sqlite3": "latest",
     "strapi": "^3.2.5",
     "strapi-admin": "^3.2.5",
