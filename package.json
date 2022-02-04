@@ -11,7 +11,7 @@
   },
   "devDependencies": {},
   "dependencies": {
-    "axios": "^0.21.1",
+    "axios": "^0.21.2",
     "js-yaml": "^3.13.1",
     "knex": "<0.20.0",
     "lodash": "^4.17.21",
